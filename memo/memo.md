@@ -7,3 +7,5 @@
 7. lsでフォルダ存在を確認
 8. canva AIで作ったコードをコピー
 9. src/fromcanva.htmlに保存
+10. goliveして動作確認
+11. git add からの commit

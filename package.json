@@ -1,0 +1,9 @@
+{
+  "name": "yuimanani",
+  "version": "1.0.0",
+  "description": "いまなにしてる？ - シンプルなタイムラインアプリ",
+  "engines": {
+    "node": "18.x"
+  }
+}
+
