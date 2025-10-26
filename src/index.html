@@ -386,6 +386,14 @@
             }
         }
 
+        // ログイン画面でEnterキーを押したときにログイン
+        document.getElementById('nameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                login();
+            }
+        });
+
         document.getElementById('postInput').addEventListener('input', function(e) {
             const length = e.target.value.length;
             const charCount = document.getElementById('charCount');

@@ -6,18 +6,46 @@ const path = require('path');
 // ポート
 const PORT = 3000;
 
-// 簡易なメモリベースストレージ
-let postsStorage = [];
+// データファイルのパス
+const DATA_DIR = path.join(__dirname, '.data');
+const DATA_FILE = path.join(DATA_DIR, 'posts.json');
+
+// .dataディレクトリを作成（存在しない場合）
+function ensureDataDirectory() {
+    if (!fs.existsSync(DATA_DIR)) {
+        fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+}
 
 // 投稿データを読み込む
 function loadPosts() {
-    return postsStorage;
+    ensureDataDirectory();
+    if (fs.existsSync(DATA_FILE)) {
+        try {
+            const data = fs.readFileSync(DATA_FILE, 'utf8');
+            return JSON.parse(data);
+        } catch (error) {
+            console.error('Error loading posts:', error);
+            return [];
+        }
+    }
+    return [];
 }
 
 // 投稿データを保存する
 function savePosts(posts) {
-    postsStorage = posts;
+    ensureDataDirectory();
+    try {
+        fs.writeFileSync(DATA_FILE, JSON.stringify(posts, null, 2), 'utf8');
+    } catch (error) {
+        console.error('Error saving posts:', error);
+        throw error;
+    }
 }
+
+// サーバー起動時にデータを読み込む
+let postsStorage = loadPosts();
+console.log(`📝 過去の投稿 ${postsStorage.length} 件を読み込みました`);
 
 const server = http.createServer((req, res) => {
     // CORS対応

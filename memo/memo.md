@@ -9,3 +9,6 @@
 9. src/fromcanva.htmlに保存
 10. goliveして動作確認
 11. git add からの commit
+12. バックエンドつきのちゃんとしたwebappにしたい（その仕様書を書く）
+13. canvaからの移行仕様書を作成
+14. cursorに、移行仕様書.mdを読み込めと指示
